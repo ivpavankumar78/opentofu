@@ -1,0 +1,1 @@
+tofu apply -var="key_pair_name=jp_rsa_key"
