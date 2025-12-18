@@ -1,0 +1,1 @@
+Hello, OpenTofu! Managed by IaC.
