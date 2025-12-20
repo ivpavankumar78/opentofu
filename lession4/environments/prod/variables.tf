@@ -9,3 +9,10 @@ variable "project_name" {
   type        = string
   default     = "myapp"
 }
+
+
+variable "enable_flow_logs" {
+  description = "enable vpc logs"
+  type        = bool
+  default     = "true"
+}

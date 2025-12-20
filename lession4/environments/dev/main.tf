@@ -17,7 +17,7 @@ module "vpc" {
   subnet_configuration = {
     public = {
       enabled      = true
-      count        = 2
+      count        = 4
       newbits      = 8
       netnum_start = 0
     }
@@ -98,6 +98,27 @@ module "vpc" {
         }
       ]
     }
+    bastion = {
+        description = "Security group for bastion host"
+        ingress_rules = [
+            {
+            from_port   = 22
+            to_port     = 22
+            protocol    = "tcp"
+            cidr_blocks = ["13.232.226.192/32"]  # Replace with your IP
+            description = "SSH from admin"
+            }
+        ]
+        egress_rules = [
+            {
+            from_port   = 0
+            to_port     = 0
+            protocol    = "-1"
+            cidr_blocks = ["0.0.0.0/0"]
+            description = "Allow all outbound"
+            }
+        ]
+    }
   }
 
   tags = {
@@ -105,6 +126,8 @@ module "vpc" {
     CostCenter = "Engineering"
   }
 }
+
+
 
 # Outputs
 output "vpc_id" {
@@ -122,3 +145,5 @@ output "private_subnets" {
 output "security_groups" {
   value = module.vpc.security_group_ids
 }
+
+

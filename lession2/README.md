@@ -55,3 +55,69 @@ Finally, you can install OpenTofu:
 Code Block
 sudo apt-get update
 sudo apt-get install -y tofu
+
+
+------------------------------
+
+My AWS lab is not working
+ 
+https://developer.hashicorp.com/terraform/install
+ 
+# OpenTofu (v1.6.0+)
+
+tofu version
+ 
+# Terraform (v1.5.0+ for initial deployment)
+
+terraform version
+ 
+# AWS CLI (v2.x)
+
+aws --version
+ 
+# jq (for JSON processing)
+
+jq --version
+ 
+# Git (for version control)
+
+git --version
+ 
+sudo apt-get update
+sudo apt-get install -y jq
+ 
+sudo apt-get update && sudo apt-get install jq
+
+ 
+# Create SSH key for lab (if you don't already have one)
+
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/opentofu-lab-key -N ""
+ 
+# Set proper permissions
+
+chmod 400 ~/.ssh/opentofu-lab-key
+ 
+# Verify key created
+
+ls -la ~/.ssh/opentofu-lab-key*
+
+# Should show:
+
+# -r-------- opentofu-lab-key (private key)
+
+# -rw-r--r-- opentofu-lab-key.pub (public key)
+ 
+# Create dedicated lab directory
+
+mkdir -p ~/opentofu-migration-lab
+
+cd ~/opentofu-migration-lab
+ 
+# Initialize Git repository for tracking
+
+git init
+
+git config user.name "Your Name"
+
+git config user.email "your.email@example.com"
+ 

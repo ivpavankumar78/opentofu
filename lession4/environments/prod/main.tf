@@ -17,7 +17,7 @@ module "vpc" {
   subnet_configuration = {
     public = {
       enabled      = true
-      count        = 3
+      count        = 4
       newbits      = 8
       netnum_start = 0
     }
@@ -135,6 +135,48 @@ module "vpc" {
         }
       ]
     }
+    bastion = {
+        description = "Security group for bastion host"
+        ingress_rules = [
+            {
+            from_port   = 22
+            to_port     = 22
+            protocol    = "tcp"
+            cidr_blocks = ["13.232.226.192/32"]  # Replace with your IP
+            description = "SSH from admin"
+            }
+        ]
+        egress_rules = [
+            {
+            from_port   = 0
+            to_port     = 0
+            protocol    = "-1"
+            cidr_blocks = ["0.0.0.0/0"]
+            description = "Allow all outbound"
+            }
+        ]
+    }
+    bastion = {
+        description = "Security group for bastion host"
+        ingress_rules = [
+            {
+            from_port   = 22
+            to_port     = 22
+            protocol    = "tcp"
+            cidr_blocks = ["13.232.226.192/32"]  # Replace with your IP
+            description = "SSH from admin"
+            }
+        ]
+        egress_rules = [
+            {
+            from_port   = 0
+            to_port     = 0
+            protocol    = "-1"
+            cidr_blocks = ["0.0.0.0/0"]
+            description = "Allow all outbound"
+            }
+        ]
+    }
   }
   
   tags = {
@@ -142,6 +184,43 @@ module "vpc" {
     CostCenter  = "Production"
     Compliance  = "Required"
   }
+}
+
+# Trust policy: VPC Flow Logs service can assume this role
+data "aws_iam_policy_document" "vpc_flow_logs_assume_role" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "Service"
+      identifiers = ["vpc-flow-logs.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_iam_role" "vpc_flow_logs_role" {
+  name               = "${var.project_name}-vpc-flow-logs-role"
+  assume_role_policy = data.aws_iam_policy_document.vpc_flow_logs_assume_role.json
+  tags = {
+    Owner       = "ProdOps"
+  }
+}
+
+#name_prefix = "${var.project_name}-${var.environment}"
+
+resource "aws_flow_log" "main" {
+  count = var.enable_flow_logs ? 1 : 0
+  #iam_role_arn    = aws_iam_role.flow_logs[0].arn
+  iam_role_arn    = aws_iam_role.vpc_flow_logs_role.arn
+  log_destination = aws_cloudwatch_log_group.flow_logs.arn
+  traffic_type    = "ALL"
+  vpc_id          = module.vpc.vpc_id
+  tags = {
+            Name = "${var.project_name}-flow-logs"
+    }
+  
+}
+resource "aws_cloudwatch_log_group" "flow_logs" {
+  name              = "/vpc/flow-logs/${var.project_name}"
 }
 
 # Outputs
