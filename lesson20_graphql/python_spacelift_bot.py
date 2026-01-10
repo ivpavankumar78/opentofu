@@ -4,9 +4,9 @@ import sys
 
 # --- CONFIGURATION ---
 # Use the exact same credentials that worked in your debug script
-SPACELIFT_ORG = "pavan78"
-API_KEY_ID = "01KEH2WX6MAR6MKD2RM8VJZQ50"      # <--- Paste your working ID here
-API_KEY_SECRET = "bd8ae6020b10728a739183ed1d19f92bd8f0d962906509328ca04d264014baa8"  # <--- Paste your working Secret here
+SPACELIFT_ORG = "myapp"
+API_KEY_ID = "xxxxxxxxxxxx"      # <--- Paste your working ID here
+API_KEY_SECRET = "yyyyyyyyyyyyyyyyyyyyyyy"  # <--- Paste your working Secret here
 
 # Endpoint
 GRAPHQL_URL = f"https://{SPACELIFT_ORG}.app.spacelift.io/graphql"
