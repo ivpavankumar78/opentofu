@@ -4,7 +4,7 @@ import json
 # --- UPDATE THESE CAREFULLY ---
 SPACELIFT_ORG = "ilglabs"
 API_KEY_ID = "01KCNN6JP8SA69PRQFYYKNJRZY"      # Check for extra spaces!
-API_KEY_SECRET = "d1a70bc723c2ea6aa84a626daf44429200be97fe530f2a2111d8431329da43a9"
+API_KEY_SECRET = "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
 
 API_URL = f"https://{SPACELIFT_ORG}.app.spacelift.io/graphql"
 
