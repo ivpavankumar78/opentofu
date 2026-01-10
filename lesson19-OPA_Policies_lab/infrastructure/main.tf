@@ -32,6 +32,7 @@ resource "aws_s3_bucket" "public_website" {
   # ⚠️ VIOLATION: Missing tags
   tags = {
     Name = "public-website"
+    Name = "CostCenter"
   }
 }
 
