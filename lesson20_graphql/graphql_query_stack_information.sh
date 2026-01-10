@@ -1,7 +1,7 @@
 #!/bin/bash
 # query-stack-jwt.sh
 
-STACK_ID="ec2-demo-stack"
+STACK_ID="testingone"
 
 curl -s -X POST "$SPACELIFT_ENDPOINT" \
   -H "Authorization: Bearer $SPACELIFT_TOKEN" \
