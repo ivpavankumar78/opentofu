@@ -3,10 +3,10 @@ import json
 import sys
 
 # --- CONFIGURATION ---
-SPACELIFT_ORG = "pavan78"
+SPACELIFT_ORG = "myapp"
 # Replace these with your actual credentials
-API_KEY_ID = "01KEH2WX6MAR6MKD2RM8VJZQ50"      # <--- Paste your working ID here
-API_KEY_SECRET = "bd8ae6020b10728a739183ed1d19f92bd8f0d962906509328ca04d264014baa8"  # <--- Paste your working Secret here
+API_KEY_ID = "xxxxxxxxxxxxxxxxxx"      # <--- Paste your working ID here
+API_KEY_SECRET = "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"  # <--- Paste your working Secret here
 
 GRAPHQL_URL = f"https://{SPACELIFT_ORG}.app.spacelift.io/graphql"
 
