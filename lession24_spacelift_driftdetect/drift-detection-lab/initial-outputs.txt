@@ -1,0 +1,4 @@
+bucket_arn = "arn:aws:s3:::drift-lab-158270a5"
+bucket_name = "drift-lab-158270a5"
+security_group_id = "sg-01b889dae95342fe0"
+security_group_name = "drift-demo-sg-158270a5"
